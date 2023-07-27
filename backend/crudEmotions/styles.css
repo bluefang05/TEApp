@@ -1,0 +1,104 @@
+:root {
+  --primary-color: #4CAF50;
+  --light-gray: #f2f2f2;
+  --box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+/* Reset styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--light-gray);
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.emotion-item {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: var(--box-shadow);
+}
+
+.emotion-item form {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.input-text {
+  width: auto;
+  margin-right: 10px;
+}
+
+.emotion-item-update {
+  display: flex;
+  align-items: center;
+}
+
+.emotion-item-update input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.emotion-item-update input[type="submit"] {
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.emotion-item-update input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.emotion-item-delete {
+  display: flex;
+  align-items: center;
+}
+
+.emotion-item-delete input[type="submit"] {
+  width: 100%;
+  padding: 10px 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.emotion-item-delete input[type="submit"]:hover {
+  background-color: #ff3b30;
+}
+
+input[type="submit"],
+input[type="button"] {
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+input[type="submit"]:hover,
+input[type="button"]:hover {
+  background-color: #45a049;
+}
+
+.input-text:focus {
+  outline: none;
+  box-shadow: 0 0 5px var(--primary-color);
+}

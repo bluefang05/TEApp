@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    }
+    
+    .container {
+    width: 500px;
+    margin: auto;
+    padding: 20px;
+    }
+    
+    h1 {
+    text-align: center;
+    }
+    
+    .form-control {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    }
+    
+    .form-control:focus {
+    outline: none;
+    border-color: skyblue;
+    }
+    
+    .btn {
+    background-color: skyblue;
+    color: white;
+    border: none;
+    }
+    
+    .btn:hover {
+    opacity: 0.8;
+    }
+    
+    .messages {
+    margin: 20px 0;
+    }
+    
+    .messages pre {
+    overflow-x: auto;
+    padding: 10px;
+    background: lightgrey;
+    }
+    
+    .messages p {
+    margin: 10px 0;
+    }

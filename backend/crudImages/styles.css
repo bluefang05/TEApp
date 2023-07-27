@@ -1,0 +1,218 @@
+:root {
+  --primary-color: #4CAF50;
+  --secondary-color: #3e8e41;
+  --light-gray: #f9f9f9;
+  --medium-gray: #ccc;
+  --dark-gray: #333;
+  --spacing-small: 10px;
+  --spacing-medium: 20px;
+  --spacing-large: 30px;
+  --border-radius: 4px;
+  --font-size-small: 14px;
+  --font-size-normal: 16px;
+  --font-size-large: 20px;
+  --font-family: sans-serif;
+  --font-weight-normal: normal;
+  --line-height-normal: 1.5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+}
+
+header {
+  background-color: var(--primary-color);
+  padding: var(--spacing-medium);
+}
+
+main {
+  padding: var(--spacing-large);
+}
+
+.container {
+  display: grid;
+  gap: var(--spacing-medium);
+  padding: var(--spacing-medium);
+}
+
+.image-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.image-container input[type="checkbox"]{
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
+.image-item {
+  border: 1px solid var(--medium-gray);
+  padding: var(--spacing-medium);
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  margin-bottom: var(--spacing-medium);
+  position: relative;
+  flex: 0 1 calc(25% - var(--spacing-small));
+}
+
+.image-item img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--border-radius);
+  max-height: 200px;
+}
+
+.image-tag {
+  background-color: var(--secondary-color);
+  color: #fff;
+  width: 100%;
+  padding: var(--spacing-small);
+  text-align: left;
+  font-size: var(--font-size-normal);
+}
+
+.filter-form,
+.upload-form,
+.images-form {
+  margin-bottom: var(--spacing-medium);
+}
+
+.form-group {
+  margin-bottom: var(--spacing-medium);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: var(--spacing-small);
+  color: var(--dark-gray);
+  font-weight: var(--font-weight-normal);
+}
+
+.form-group input[type="file"],
+.form-group select,
+.form-group input[type="submit"] {
+  padding: var(--spacing-small);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--medium-gray);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-group input[type="submit"] {
+  background-color: var(--primary-color);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.form-group input[type="submit"]:hover {
+  background-color: var(--secondary-color);
+}
+
+@media (max-width: 768px) {
+  .image-item {
+    flex: 0 1 calc(50% - var(--spacing-small));
+  }
+}
+
+@media (max-width: 480px) {
+  .image-item {
+    flex: 0 1 100%;
+  }
+}
+
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: var(--spacing-medium);
+}
+
+.tag {
+  background-color: var(--light-gray);
+  padding: var(--spacing-small);
+  border-radius: var(--border-radius);
+  margin-right: var(--spacing-small);
+  margin-bottom: var(--spacing-small);
+  font-size: var(--font-size-small);
+  color: var(--dark-gray);
+}
+
+.file-upload-container {
+  text-align: center;
+  margin-bottom: var(--spacing-medium);
+}
+
+.file-upload-label {
+  display: block;
+  margin-bottom: var(--spacing-small);
+  color: var(--dark-gray);
+  font-weight: var(--font-weight-normal);
+  font-size: var(--font-size-normal);
+}
+
+.file-upload-input {
+  display: none;
+}
+
+.file-upload-btn {
+  padding: var(--spacing-small) var(--spacing-medium);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--medium-gray);
+  background-color: #fff;
+  color: var(--dark-gray);
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.file-upload-btn:hover {
+  background-color: var(--light-gray);
+}
+
+.error-message {
+  color: red;
+  margin-bottom: var(--spacing-small);
+  font-size: var(--font-size-small);
+}
+
+.images-empty {
+  text-align: center;
+  font-size: var(--font-size-large);
+  color: var(--dark-gray);
+  margin-top: var(--spacing-large);
+}
+
+.images-empty::before {
+  content: "No images found";
+  display: block;
+}
+
+.images-loading {
+  text-align: center;
+  font-size: var(--font-size-large);
+  color: var(--dark-gray);
+  margin-top: var(--spacing-large);
+}
+
+.images-loading::before {
+  content: "Loading images...";
+  display: block;
+}
+
+@media (max-width: 480px) {
+  .images-empty,
+  .images-loading {
+    font-size: var(--font-size-normal);
+  }
+}
