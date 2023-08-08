@@ -1,0 +1,112 @@
+{
+  "ftp://files@aspierd.com@ftp.aspierd.com": {
+    "public_html": {
+      "otros": {
+        "widgets": {
+          "api": {
+            "selecciona-2": {
+              "backend": {
+                "api": {},
+                "config": {},
+                "crudEmotions": {
+                  "Emotion.php": {
+                    "type": "-",
+                    "size": 1194,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "crudEmotions.php": {
+                    "type": "-",
+                    "size": 2526,
+                    "lmtime": 1691368443141.8733,
+                    "modified": false
+                  },
+                  "database.php": {
+                    "type": "-",
+                    "size": 501,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "styles.css": {
+                    "type": "-",
+                    "size": 1910,
+                    "lmtime": 0,
+                    "modified": false
+                  }
+                },
+                "crudImages": {
+                  "Image.php": {
+                    "type": "-",
+                    "size": 7144,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "crudImages.php": {
+                    "type": "-",
+                    "size": 9640,
+                    "lmtime": 1691368113331.5105,
+                    "modified": false
+                  },
+                  "script.js": {
+                    "type": "-",
+                    "size": 1682,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "styles.css": {
+                    "type": "-",
+                    "size": 4176,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "thumbnails": {},
+                  "uploads": {}
+                },
+                "crudUsers": {
+                  "Role.php": {
+                    "type": "-",
+                    "size": 1002,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "User.php": {
+                    "type": "-",
+                    "size": 2564,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "crudUser.php": {
+                    "type": "-",
+                    "size": 4660,
+                    "lmtime": 1691368429436.942,
+                    "modified": false
+                  },
+                  "usercrud-style.css": {
+                    "type": "-",
+                    "size": 1768,
+                    "lmtime": 0,
+                    "modified": false
+                  }
+                },
+                "header-style.css": {
+                  "type": "-",
+                  "size": 570,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "header.php": {
+                  "type": "-",
+                  "size": 1529,
+                  "lmtime": 1691366113604.0059,
+                  "modified": true
+                },
+                "session": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$version": 1
+}

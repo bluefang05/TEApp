@@ -1,7 +1,11 @@
 <?php
 session_start();
 
-
+if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 3) {
+    // Redirect the user to the specified URL
+    header("Location: https://aspierd.com/otros/widgets/api/selecciona-2/backend/crudImages/crudImages.php");
+    exit; // Make sure to exit after the redirect to prevent further code execution
+}
 
 require_once '../config/database.php';
 require_once './Emotion.php';

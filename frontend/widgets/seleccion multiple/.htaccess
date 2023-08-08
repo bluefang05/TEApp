@@ -1,0 +1,23 @@
+# BEGIN WordPress
+# The directives (lines) between 'BEGIN WordPress' and 'END WordPress' are
+# dynamically generated and should only be modified through WordPress filters.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+    RewriteBase /
+    RewriteRule ^index\.php$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Allow from your own domain
+    SetEnvIf Origin "http(s)?://(www\.)?aspierd\.com$" AccessControlAllowOrigin=$0
+    Header set Access-Control-Allow-Origin %{AccessControlAllowOrigin}e env=AccessControlAllowOrigin
+    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+</IfModule>

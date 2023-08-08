@@ -2,7 +2,7 @@
 session_start();
 
 require_once '../config/database.php';
-require_once 'User.php';
+require_once '../crudUsers/User.php';
 
 $messages = [];
 
@@ -16,8 +16,10 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         foreach ($users as $user) {
             if ($user['username'] == $_POST['username'] && password_verify($_POST['password'], $user['hashed_password'])) {
                 $_SESSION['username'] = $user['username'];
+                $_SESSION['role_id'] = $user['role_id']; // add role_id to the session
+                $_SESSION['user_id'] = $user['id']; // add user_id to the session
                 $messages[] = 'Successfully logged in! Redirecting...';
-                header('Location: https://aspierd.com/otros/widgets/api/selecciona-1/crudEmotions/crudEmotions.php'); // redirect to the crudImages page
+                header('Location: https://aspierd.com/otros/widgets/api/selecciona-2/backend/crudEmotions/crudEmotions.php'); // redirect to the crudImages page
                 exit;
             }
         }
@@ -35,14 +37,6 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     <link rel="stylesheet" type="text/css" href="login-styles.css">
 </head>
 <body>
-    <!-- <?php
-session_start();
-
-if (isset($_SESSION)) {
-    var_dump($_SESSION);
-}
-?> -->
-
     <div class="container">
         <h1>Login</h1>
         <!-- HTML for the login form -->

@@ -1,0 +1,326 @@
+Here's the sorted CSS:
+
+/* Global styles */
+html {
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #5E97B0; /* cold blue shade */
+}
+
+*{
+  box-sizing: inherit;
+}
+
+/* Game styles */
+#canvas {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+#timer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  background-color: #4F8A99; /* cold blue shade */
+  padding: 0.5rem;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  position: absolute;
+  top: 0;
+}
+
+#timer {
+  color: #FFFFFF; /* white */
+  font-size: 3em;
+  font-weight: bold;
+}
+
+.button {
+  background-color: #FFFFFF;
+  border: 1px solid #4A7C8E;
+  padding: 5px 10px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.2s ease-in-out;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #E0ECF0;
+}
+
+#portrait {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+#questionBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+#answerBox {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.answer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  margin: 10px;
+  background-color: #3B6978; /* cold blue shade */
+  padding: 1rem;
+  font-size: 1.2em;
+  border: 0.2em solid #FFFFFF; /* white */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  color: #FFFFFF; /* white */
+}
+
+.answer:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  #canvas {
+    padding: 1rem;
+  }
+
+  #portrait {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  #timer {
+    font-size: 2em;
+  }
+
+  .answer {
+    font-size: 1em;
+    padding: 0.5rem;
+  }
+
+  .button-container {
+    width: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  #timer-container {
+    margin-bottom: 1rem;
+    width: 60px;
+  }
+
+  #questionBox {
+    margin-bottom: 1rem;
+  }
+  #canvas {
+    height: 95vh;
+  }
+}
+
+.shake {
+  animation: shake 0.5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+
+  }
+
+  10% {
+  transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  
+  20% {
+  transform: translate(-3px, 0px) rotate(1deg);
+  }
+  
+  30% {
+  transform: translate(3px, 2px) rotate(0deg);
+  }
+  
+  40% {
+  transform: translate(1px, -1px) rotate(1deg);
+  }
+  
+  50% {
+  transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  
+  60% {
+  transform: translate(-3px, 1px) rotate(0deg);
+  }
+  
+  70% {
+  transform: translate(3px, 1px) rotate(-1deg);
+  }
+  
+  80% {
+  transform: translate(-1px, -1px) rotate(1deg);
+  }
+  
+  90% {
+  transform: translate(1px, 2px) rotate(0deg);
+  }
+  
+  100% {
+  transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+#timer-container.red.shake{
+  background-color: #7442e2; /* cold blue shade */
+}
+
+#score {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100px;
+  height: 60px;
+  font-size: 40px;
+  background-color: #3B6978; /* cold blue shade */
+  border-bottom-right-radius: 15px;
+  color: #FFFFFF; /* white */
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+/* Add these lines at the end of the CSS file */
+
+
+/* Home button styles */
+.home-button-container {
+position: absolute;
+top: 20px;
+right: 0;
+transform: translateX(-50%);
+z-index: 1;
+}
+
+.button-container button {
+background-color: #8EACBB; /* light blue shade */
+color: black;
+}
+
+.home-button {
+background-color: #FFFFFF; /* white /
+border: 1px solid #4A7C8E; / cold blue shade */
+padding: 5px 10px;
+font-size: 1em;
+cursor: pointer;
+border-radius: 5px;
+transition: background-color 0.2s ease-in-out;
+}
+
+.home-button:hover {
+background-color: #E0ECF0; /* light blue shade */
+}
+
+@media (max-width: 768px) {
+.home-button-container {
+top: 50px;
+}
+
+#portrait {
+width: 100%;
+height: 200px;
+object-fit: cover;
+border-radius: 5px;
+}
+}
+
+.button-container {
+position: absolute;
+top: 0px;
+right: 0px;
+display: flex;
+flex-direction: column;
+gap: 10px;
+align-items: flex-end;
+justify-content: flex-end;
+}
+
+.button-container button {
+  background-color: #8EACBB; /* light blue shade */
+  border: 1px solid #4A7C8E; /* cold blue shade */
+  color: #1F1313;
+  padding: 5px 10px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.button-container button:hover {
+background-color: #E0ECF0; /* light blue shade */
+}
+
+#resetMaxScoreButton {
+/*background-color: #FFFFFF;
+border: 1px solid #4A7C8E;*/ 
+padding: 5px 10px;
+font-size: 1em;
+cursor: pointer;
+border-radius: 5px;
+transition: background-color 0.2s ease-in-out;
+width: 100%;
+}
+
+#muteButton {
+
+  padding: 5px 10px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.2s ease-in-out;
+  width: 100%;
+}
+
+#muteButton:hover {
+  background-color: #E0ECF0; /* light blue shade */
+}
+
+#resetMaxScoreButton:hover {
+background-color: #E0ECF0; /* light blue shade */
+}
+
+#resetButton {
+width: 50%;
+} 

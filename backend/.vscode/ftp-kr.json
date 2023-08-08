@@ -1,0 +1,16 @@
+{
+    "host": "ftp.aspierd.com",
+    "username": "files@aspierd.com",
+    "password": "-W}C1bgoaM]f",
+    "remotePath": "/public_html/otros/widgets/api/selecciona-2/backend/",
+    "protocol": "ftp",
+    "port": 0,
+    "fileNameEncoding": "utf8",
+    "autoUpload": true,
+    "autoDelete": false,
+    "autoDownload": false,
+    "ignore": [
+        ".git",
+        "/.vscode"
+    ]
+}

@@ -1,9 +1,8 @@
 <?php
-session_start();
-
 require '../config/database.php';
 require '../crudEmotions/Emotion.php';
 require 'Image.php';
+session_start();
 
 try {
     $pdo = getPDO();
@@ -11,8 +10,12 @@ try {
     $imageHandler = new Image($pdo, 'uploads/', 5000000);
 
     $selectedEmotionId = null;
-    $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
-    $imagesPerPage = isset($_GET['imagesPerPage']) ? $_GET['imagesPerPage'] : 12;
+    $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $imagesPerPage = isset($_GET['imagesPerPage']) ? (int)$_GET['imagesPerPage'] : 12;
+
+    if ($currentPage < 1) {
+        $currentPage = 1;
+    }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_POST['filter_emotion_id'])) {
@@ -69,11 +72,18 @@ try {
 
     $emotions = $emotionHandler->read();
     $totalPages = $imageHandler->getTotalPages($imagesPerPage);
-    $images = $imageHandler->readWithEmotions($selectedEmotionId, $currentPage, $imagesPerPage);
+    $images = $imageHandler->readWithEmotions($selectedEmotionId, $currentPage, $imagesPerPage, $_SESSION['user_id'], $_SESSION['role_id']);
+
+    if ($currentPage > $totalPages && $totalPages > 0) {
+        header('Location: ' . $_SERVER['PHP_SELF'] . '?page=' . $totalPages . '&imagesPerPage=' . $imagesPerPage);
+        exit;
+    }
+
 } catch (PDOException $e) {
     die("Error: " . $e->getMessage());
 }
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -92,9 +102,9 @@ try {
                     <select name="filter_emotion_id" id="filter_emotion_id" class="form-control">
                         <option value="">Mostrar todas</option>
                         <?php foreach ($emotions as $emotion): ?>
-                            <option value="<?= $emotion['id']; ?>" <?= $selectedEmotionId == $emotion['id'] ? 'selected' : ''; ?>>
-                                <?= htmlspecialchars($emotion['emotion'], ENT_QUOTES, 'UTF-8'); ?>
-                            </option>
+                                <option value="<?= $emotion['id']; ?>" <?= $selectedEmotionId == $emotion['id'] ? 'selected' : ''; ?>>
+                                    <?= htmlspecialchars($emotion['emotion'], ENT_QUOTES, 'UTF-8'); ?>
+                                </option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -110,7 +120,7 @@ try {
                     <input type="file" name="new_image_file[]" multiple class="form-control">
                     <select name="new_image_emotion_id[]" class="form-control">
                         <?php foreach ($emotions as $emotion): ?>
-                            <option value="<?= $emotion['id']; ?>"><?= htmlspecialchars($emotion['emotion'], ENT_QUOTES, 'UTF-8'); ?></option>
+                                <option value="<?= $emotion['id']; ?>"><?= htmlspecialchars($emotion['emotion'], ENT_QUOTES, 'UTF-8'); ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -128,7 +138,7 @@ try {
             <form method="post" enctype="multipart/form-data" class="images-form">
                 <select name="update_emotion_id" class="form-control">
                     <?php foreach ($emotions as $emotion): ?>
-                        <option value="<?= $emotion['id']; ?>"><?= htmlspecialchars($emotion['emotion'], ENT_QUOTES, 'UTF-8'); ?></option>
+                            <option value="<?= $emotion['id']; ?>"><?= htmlspecialchars($emotion['emotion'], ENT_QUOTES, 'UTF-8'); ?></option>
                     <?php endforeach; ?>
                 </select>
                 <input type="submit" name="update_emotion" value="Actualizar Emoción" class="btn btn-primary">
@@ -136,38 +146,45 @@ try {
 
                 <div class="image-container">
                     <?php foreach ($images as $image): ?>
-                        <div class="image-item">
-                            <img src="<?= htmlspecialchars($image['image_path'], ENT_QUOTES, 'UTF-8'); ?>" alt="Imagen" class="img-thumbnail">
-                            <div class="tag">
-                                <p><?= htmlspecialchars($emotionHandler->getEmotionName($image['emotion_id']), ENT_QUOTES, 'UTF-8'); ?></p>
-                            </div>
-                            <input type="checkbox" name="selected_images[]" value="<?= $image['id']; ?>">
-                            <input type="hidden" name="update_ids[]" value="<?= $image['id']; ?>">
+                            <div class="image-item">
+                                <img src="<?= htmlspecialchars($image['image_path'], ENT_QUOTES, 'UTF-8'); ?>" alt="Imagen" class="img-thumbnail">
+                                <div class="tag">
+                                    <p><?= htmlspecialchars($emotionHandler->getEmotionName($image['emotion_id']), ENT_QUOTES, 'UTF-8'); ?></p>
+                                </div>
+                                <input type="checkbox" name="selected_images[]" value="<?= $image['id']; ?>">
+                                <input type="hidden" name="update_ids[]" value="<?= $image['id']; ?>">
 
-                            <form method="post" enctype="multipart/form-data" class="update-form">
-    <input type="hidden" name="update_id" value="<?= $image['id']; ?>">
-    <input type="file" name="update_image_file" class="form-control">
-    <select name="update_image_emotion_id" class="form-control">
-        <?php foreach ($emotions as $emotion): ?>
-            <option value="<?= $emotion['id']; ?>" <?= $image['emotion_id'] == $emotion['id'] ? 'selected' : ''; ?>>
-                <?= htmlspecialchars($emotion['emotion'], ENT_QUOTES, 'UTF-8'); ?>
-            </option>
-        <?php endforeach; ?>
-    </select>
-    <input type="submit" value="Actualizar Imagen" class="btn btn-primary">
-    <button type="submit" name="delete_id" value="<?= $image['id']; ?>" class="btn btn-danger">Eliminar</button>
-</form>
-                        </div>
+                                <form method="post" enctype="multipart/form-data" class="update-form">
+        <input type="hidden" name="update_id" value="<?= $image['id']; ?>">
+        <input type="file" name="update_image_file" class="form-control">
+        <select name="update_image_emotion_id" class="form-control">
+            <?php foreach ($emotions as $emotion): ?>
+                    <option value="<?= $emotion['id']; ?>" <?= $image['emotion_id'] == $emotion['id'] ? 'selected' : ''; ?>>
+                        <?= htmlspecialchars($emotion['emotion'], ENT_QUOTES, 'UTF-8'); ?>
+                    </option>
+            <?php endforeach; ?>
+        </select>
+        <input type="submit" value="Actualizar Imagen" class="btn btn-primary">
+        <button type="submit" name="delete_id" value="<?= $image['id']; ?>" class="btn btn-danger">Eliminar</button>
+    </form>
+                            </div>
                     <?php endforeach; ?>
                 </div>
 
                 <section>
-            <div class="pagination">
-                <?php for ($page = 1; $page <= $totalPages; $page++): ?>
-                    <a href="?page=<?= $page; ?>&imagesPerPage=<?= $imagesPerPage; ?>" class="<?= $page == $currentPage ? 'active' : ''; ?>"><?= $page; ?></a>
-                <?php endfor; ?>
-            </div>
-        </section>
+  <div class="pagination">
+    <?php
+    if ($_SESSION["role_id"] == 3) {
+        $totalPages = $imageHandler->getTotalPages($imagesPerPage, $_SESSION["role_id"], $userId);
+    } else {
+        $totalPages = $imageHandler->getTotalPages($imagesPerPage);
+    }
+
+    for ($page = 1; $page <= $totalPages; $page++): ?>
+           <a href="?page=<?= $page; ?>&imagesPerPage=<?= $imagesPerPage; ?>" class="<?= $page == $currentPage ? 'active' : ''; ?>"><?= $page; ?></a>
+    <?php endfor; ?>
+  </div>
+</section>
 
         <section>
             <form method="get" class="images-per-page-form">
